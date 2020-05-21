@@ -10,6 +10,7 @@ import vn.edu.ntu.quangloc.model.Product;
 public class CartController extends Application implements ICartController {
 
     List<Product> listProducts = new ArrayList<>();
+    List<Product> shoppingCart = new ArrayList<>();
 
     public CartController() {
         listProducts.add(new Product("Khoai Lang",25000, "Khoai lang theo tiêu chuẩn VietGap"));
@@ -23,5 +24,23 @@ public class CartController extends Application implements ICartController {
     @Override
     public List<Product> getAllProduct() {
         return listProducts;
+    }
+
+    @Override
+    public boolean addToCart(Product p) {
+        if (shoppingCart.contains(p))
+        return false;
+        shoppingCart.add(p);
+        return true;
+    }
+
+    @Override
+    public List<Product> getShoppingCart() {
+        return shoppingCart;
+    }
+
+    @Override
+    public void clearShoppingCart() {
+        shoppingCart.clear();
     }
 }
